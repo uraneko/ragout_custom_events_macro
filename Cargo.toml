@@ -9,7 +9,7 @@ readme = "README.md"
 keywords = ["terminal", "raw_mode", "cli", "proc-macro"]
 categories = ["command-line-interface"]
 exclude = ["Cargo.lock"]
-# documentation = "https://docs.rs/ragout_custom_events_macro"
+documentation = "https://docs.rs/ragout_custom_events_macro"
 
 
 [lib]
