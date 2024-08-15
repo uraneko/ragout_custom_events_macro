@@ -84,10 +84,11 @@ fn gen_lib() -> TS2 {
 
         // move the logs in History::new and Input::new to this fn
         // since they can't stay there due to design limitations
-        pub fn log_init(i: &mut Input, h: &mut History) {
-            i.log(&InputAction::New);
-            h.log(&InputAction::New);
-        }
+        // #[cfg(any(debug_assertions, feature = "debug_logs"))]
+        // pub fn log_init(i: &mut Input, h: &mut History) {
+        //     i.log(&InputAction::New);
+        //     h.log(&InputAction::New);
+        // }
 
         pub fn run(
             input: &mut Input,
@@ -144,7 +145,6 @@ fn gen_lib() -> TS2 {
         }
 
         use crossterm::event::{read as kbd_read, Event, KeyCode, KeyEvent, KeyModifiers};
-        use crossterm::terminal::enable_raw_mode;
 
         fn keyboard() -> Command {
             match kbd_read() {
@@ -303,7 +303,7 @@ fn input_actions_enum(ia: Vec<TS2>) -> TS2 {
             CRLF,
             MoveRight,
             MoveLeft,
-            New,
+            // New,
             MoveEnd,
             MoveRightJump,
             MoveLeftJump,
@@ -440,7 +440,7 @@ fn input_write(arms: Vec<TS2>) -> TS2 {
         ) {
             match ia {
                 // default hard coded arms
-                InputAction::New => (),
+                // InputAction::New => (),
                 InputAction::MoveRight => {
                     if self.to_the_right() {
                         _ = sol.write(b"\x1b[C");
