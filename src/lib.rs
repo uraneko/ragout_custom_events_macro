@@ -5,7 +5,6 @@ use quote::quote;
 use quote::ToTokens;
 
 use syn::parse::{Parse, ParseStream};
-use syn::parse_str;
 use syn::punctuated::Punctuated;
 use syn::token::Semi;
 use syn::{parse_macro_input, Token};
