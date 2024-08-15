@@ -1,0 +1,26 @@
+name: ragout-ci
+
+on: 
+  push: 
+    branches: 
+      - main
+
+  pull_request: 
+    branches: 
+      - main
+
+  workflow_dispatch:
+
+jobs: 
+  test_then_build:
+    name: ragout - latest
+    runs-on: ubuntu-latest
+    strategy: 
+      matrix: 
+        toolchain: 
+          - nightly
+          - stable
+    steps: 
+      - uses: actions/checkout@v4
+      - run : cargo b --verbose --release
+      - run: cargo t --verbose
